@@ -1,4 +1,4 @@
-package lafkareine.util.linkage;
+package lafkareine.linkage;
 
 import java.util.Collection;
 import java.util.function.Consumer;
@@ -32,7 +32,49 @@ public abstract class Holdable<T> extends LinkableObject {
 		return new LinkableListPath<R>(this, navigator, concerns);
 	}
 
-	public final <R> LinkableFunction<R> map(Function<? super T, ? extends R> action){
-		return new LinkableFunction<R>(this, action);
+	public final <R> Variable<R> map(Function<? super T, ? extends R> action){
+		return new Map<T,R>(this,action);
+	}
+
+	public final <R> Variable<R> map(Function<? super T, ? extends R> action,LinkableObject... concerns){
+		return new Map<T,R>(this,action,concerns);
+	}
+
+	private static class Map<T,R> extends Variable<R> {
+
+		private R cache;
+		private Function<? super T, ? extends R> action;
+
+		private Holdable<? extends T> from;
+
+		@Override
+		protected R getSafely() {
+			return cache;
+		}
+
+		@Override
+		protected void discard() {
+			cache = null;
+			from = null;
+			action = null;
+		}
+
+		@Override
+		protected void action() {
+			cache = action.apply(from.get());
+		}
+
+
+		public Map(Holdable<? extends T> from, Function<? super T, ? extends R> action){
+			this.from = from;
+			this.action = action;
+			launchAction(from);
+		};
+
+		public Map(Holdable<? extends T> from, Function<? super T, ? extends R> action, LinkableObject... concerns){
+			this.from = from;
+			this.action = action;
+			launchAction(arrayadd(concerns,from));
+		};
 	}
 }

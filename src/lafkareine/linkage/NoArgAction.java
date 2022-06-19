@@ -1,4 +1,4 @@
-package lafkareine.util.linkage;
+package lafkareine.linkage;
 
 public interface NoArgAction<T> extends BasicAction<T>{
 	default T action(T arg){

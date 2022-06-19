@@ -1,4 +1,4 @@
-package lafkareine.util.linkage;
+package lafkareine.linkage;
 
 import java.util.function.Supplier;
 

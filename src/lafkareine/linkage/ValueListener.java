@@ -1,4 +1,4 @@
-package lafkareine.util.linkage;
+package lafkareine.linkage;
 
 public interface ValueListener<T> {
 

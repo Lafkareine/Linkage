@@ -9,9 +9,10 @@
  * 利用者が明示的にadd/deleteObserverを行う必要はありません。
  *
  * このシステムはObservableパターンの派生なので、SubjectとObserverは相互参照を持ちます。
- * そのため、Subjectに不要になったObserverを破棄させないと、メモリリークを起こしてしまいます。
+ * そのため、不要になったObserverをSubjectから適切に破棄させないと、メモリリークを起こしてしまいます。
  * しかし、Observerが不要になったかどうかの判断を利用者が行うのは難しく、C++のメモリ管理と同様の負担を強いることになります。
- * 逆に、Subject以外のどこからも参照されなくなったLinkableオブジェクトは自然に消滅してしまうため、通常のObserverのように扱う場合であっても、強参照を残しておく必要があります。
+ * この問題について、ここでは弱参照を利用することで対処しています。SubjectからObserverへのリンクは弱参照により保持されており、Observerへ他所からの強参照が無くなった時点でObserverはGCによる回収が可能になります。
+ * 逆に、Subject以外のどこからも参照されなくなったLinkableオブジェクトは自然に消滅してしまうため、通常のObserverのように扱う場合であっても、あえて強参照を残しておく必要があります。
  *
  *
  * Linkableは、通常の変数を拡張するようにして使うことができ、最も頻繁に使用され、Linkableなプログラミングの中核を担います。
@@ -26,4 +27,4 @@
  *
  * @author teneur lafkareine */
 
-package lafkareine.util.linkage;
+package lafkareine.linkage;

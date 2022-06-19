@@ -1,4 +1,4 @@
-package lafkareine.util.linkage;
+package lafkareine.linkage;
 
 /** Kotlinとかで継承して使うときにやりやすい
  *

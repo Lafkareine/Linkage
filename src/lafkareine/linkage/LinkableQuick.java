@@ -1,5 +1,5 @@
 
-package lafkareine.util.linkage;
+package lafkareine.linkage;
 
 @Deprecated
 public class LinkableQuick<T> extends Linkable<T> {

@@ -1,5 +1,5 @@
 
-package lafkareine.util.linkage;
+package lafkareine.linkage;
 
 
 public class LinkableTrigger extends Actable {

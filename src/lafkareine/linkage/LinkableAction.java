@@ -1,5 +1,5 @@
 
-package lafkareine.util.linkage;
+package lafkareine.linkage;
 
 
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class LinkableAction extends Actable {
 
 	public <U>void set(Consumer<List<U>> action, boolean with_running, LinkableObject... concerns) {
 		// TODO 自動生成されたメソッド・スタブ
-		final ArrayList<U> list = new ArrayList();
+		final ArrayList<U> list = new ArrayList<>();
 		set(()->action.accept(list), with_running, concerns);
 	}
 
