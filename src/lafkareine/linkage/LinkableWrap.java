@@ -11,7 +11,6 @@ public class LinkableWrap<T> extends Linkable<T>{
 
 	private Linkable<T> inner;
 	private final Junction junction = new Junction();
-	private Supplier<Linkable<T>> supplier;
 
 	private class Junction extends LinkableObject {
 		private Supplier<Linkable<T>> from;
